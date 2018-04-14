@@ -1,0 +1,37 @@
+<resources>
+    <string name="app_name">ColegiosPy</string>
+    <string name="action_settings">Settings</string>
+    <string name="TituloPrincipal">Instituciones educativas del Paraguay</string>
+    <string name="snackbar_welcome">Cargando Lista de instituciones</string>
+    <string-array name="planets">
+        <item>Mercurio</item>
+        <item>Jupiter</item>
+        <item>Saturno</item>
+        <item>Marte</item>
+        <item>Pluton</item>
+        <item>urano</item>
+        <item>Venus</item>
+        <item>Neptuno</item>
+    </string-array>
+    
+    
+    <string-array name="departamentos">
+        <item>Central</item>
+        <item>Concepcion</item>
+        <item>San Pedro</item>
+        <item>Cordillera</item>
+        <item>Guaira</item>
+        <item>Caaguazu</item>
+        <item>Caazapa</item>
+        <item>Itapua</item>
+        <item>Misiones</item>
+        <item>Paraguari</item>
+        <item>Alto Parana</item>
+        <item>Ñeembucu</item>
+        <item>Amambay</item>
+        <item>Canindeyu</item>
+        <item>Presidente Hayes</item>
+        <item>Boqueron</item>
+        <item>Alto Paraguay</item>
+    </string-array>
+</resources>
