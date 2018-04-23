@@ -3,15 +3,38 @@
     <string name="action_settings">Settings</string>
     <string name="TituloPrincipal">Instituciones educativas del Paraguay</string>
     <string name="snackbar_welcome">Cargando Lista de instituciones</string>
-    <string-array name="planets">
-        <item>Mercurio</item>
-        <item>Jupiter</item>
-        <item>Saturno</item>
-        <item>Marte</item>
-        <item>Pluton</item>
-        <item>urano</item>
-        <item>Venus</item>
-        <item>Neptuno</item>
+    <string-array name="prop_instituciones">
+        <item>anio</item>
+        <item>codigo_departamento</item>
+        <item>nombre_departamento</item>
+        <item>codigo_distrito</item>
+        <item>nombre_distrito</item>
+        <item>codigo_barrio_localidad</item>
+        <item>nombre_barrio_localidad</item>
+        <item>codigo_zona</item>
+        <item>nombre_zona</item>
+        <item>codigo_establecimiento</item>
+        <item>nombre_institucion</item>
+        <item>sector_o_tipo_gestion</item>
+        <item>codigo_region_administrativa</item>
+        <item>nombre_region_administrativa</item>
+        <item>nombre_supervisor</item>
+        <item>niveles_modalidades</item>
+        <item>nombre_tipo_organizacion</item>
+        <item>participacion_comunitaria</item>
+        <item>direccion</item>
+        <item>nro_telefono</item>
+        <item>tiene_internet</item>
+        <item>paginaweb</item>
+        <item>correo_electronico</item>
+        <item>id</item>
+        <item>anho_cod_geo</item>
+        <item>codigo_institucion</item>
+        <item>codigo_tipo_organizacion</item>
+        <item>establecimiento_id</item>
+        <item>tiene_computadora</item>
+        <item>uri_establecimiento</item>
+        <item>uri_institucion</item>    
     </string-array>
     
     

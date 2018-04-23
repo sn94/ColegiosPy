@@ -1,11 +1,13 @@
 package com.example.sonia.colegiospy;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
 import android.support.v4.widget.SwipeRefreshLayout;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -15,6 +17,14 @@ import android.widget.GridView;
 import android.widget.ListView;
 
 import com.example.sonia.colegiospy.GrillaAdapter.GrillaAdapter;
+import com.example.sonia.colegiospy.pojos.Institucion;
+import com.example.sonia.colegiospy.pojos.ListaInstituciones;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.util.ArrayList;
 
 public class home extends AppCompatActivity {
 
@@ -25,19 +35,31 @@ public class home extends AppCompatActivity {
     ListView MyListView;
     Adapter adaptador;
     
+    
+    
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
         crearLista();
         crear_fab();
-    
+ mostrartest();
+   
     }
 
+    private void mostrartest(){
+        ArrayList<Institucion> ar =
+                new ListaInstituciones(getBaseContext()).getLista();
+        
+        for(Institucion inst:ar){
+           Log.d("institucion ", inst.getNombre_institucion());
+        }
+    }
+    
     public void crearLista(){
 
         MiSwpLayout=  (SwipeRefreshLayout) findViewById(R.id.MiSwpRefresh );
         MyListView= (ListView) findViewById( R.id.MiListView);
-        String[] planetas= getResources().getStringArray( R.array.planets );
+        String[] planetas= getResources().getStringArray( R.array.prop_instituciones );
         
         ArrayAdapter arrayAdapter=
                 new ArrayAdapter(this,android.R.layout.simple_list_item_1,planetas);
@@ -55,7 +77,7 @@ public class home extends AppCompatActivity {
     
     
     public void refrescar_contenido(){
-        String[] planetas= getResources().getStringArray( R.array.planets );
+        String[] planetas= getResources().getStringArray( R.array.prop_instituciones );
         ArrayAdapter arrayAdapter=
                 new ArrayAdapter(this,android.R.layout.simple_list_item_1,planetas);
         MyListView.setAdapter( arrayAdapter );
@@ -70,6 +92,7 @@ public class home extends AppCompatActivity {
             public void onClick(View view) {
                 Snackbar.make(view, getResources().getString(R.string.snackbar_welcome), Snackbar.LENGTH_LONG)
                         .setAction("Action", null)
+     
                         .setActionTextColor( getResources().getColor( R.color.colorPrimaryDark))
                         .show();
             }
@@ -99,5 +122,9 @@ public class home extends AppCompatActivity {
 
 
 
+    
+    
+   
+  
 
 }
