@@ -7,12 +7,14 @@ import android.util.Log;
 import com.example.sonia.colegiospy.LecturaJson;
 import com.example.sonia.colegiospy.R;
 import com.google.gson.Gson;
+import com.google.gson.reflect.TypeToken;
 
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.io.UnsupportedEncodingException;
+import java.lang.reflect.Type;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -50,12 +52,15 @@ public class ListaInstituciones {
                     //leer valor de propiedad
                     try {
                         valor_pro= arg.nextString();
+                        Log.d("valor", valor_pro);
                     }catch (IllegalStateException se){
-                        //se.printStackTrace();
+                        se.printStackTrace();
+                        valor_pro="";
                     }
                     //verificar de que propiedad se trata
+                    Log.d("ANTES ","SETTERS");
                     temp_inst.setPropertyValue(contex,  temp_inst,  propiedad, valor_pro );
-
+                    Log.d("DESPUES ","SETTERS");
                 }catch (IllegalStateException se){
                     //se.printStackTrace();
                 }
@@ -71,8 +76,11 @@ public class ListaInstituciones {
         return temp_inst;    }
     
  private void CargarListaDesdeJson(JsonReader jsonr){
+        int nro_objetos=0;
      try {
          jsonr.beginArray();
+         ++nro_objetos;
+         Log.d("Objeto nro ", String.valueOf(nro_objetos)  );
          while( jsonr.hasNext() ){ 
              lista.add(leerObjetoDesdeJson( jsonr ) );
          }
@@ -88,21 +96,52 @@ public class ListaInstituciones {
 
       InputStream input_stream= contex.getResources().openRawResource(R.raw.instituciones_lista);
         try {
+          
             JsonReader jsonr= new JsonReader( new InputStreamReader( input_stream ,"UTF-8"));
-        return jsonr;
+            return jsonr;
         } catch (UnsupportedEncodingException e) {
             e.printStackTrace();
             return null;
         }
     }
-    
-    
+
+
+
+    public String leerFuenteDeDatos(){
+        StringBuffer sb = new StringBuffer();
+        BufferedReader br = null;
+
+        try{
+            br = new BufferedReader(
+                    new InputStreamReader(
+                            contex.getResources().openRawResource(R.raw.instituciones_lista)));
+            String line;
+
+            while((line = br.readLine()) != null){
+                sb.append(line);
+            }
+        }catch (IOException e){
+            e.printStackTrace();
+        }finally {
+            try{
+                br.close();
+            }catch (IOException e){
+                e.printStackTrace();
+            }
+        }
+
+        return sb.toString();
+    }
     
     
     
     public ArrayList<Institucion>  getLista(){
-        JsonReader jsr= LeerDesdeArchivo();
-        CargarListaDesdeJson(  jsr  );
+
+        Gson gson= new Gson();
+        Type type = new TypeToken<List<Institucion>>() {}.getType();
+        this.lista = gson.fromJson( leerFuenteDeDatos(), type);
+        //JsonReader jsr= LeerDesdeArchivo();
+        //CargarListaDesdeJson(  jsr  );
         return this.lista;
     }
     

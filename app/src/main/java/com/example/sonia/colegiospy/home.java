@@ -47,12 +47,18 @@ public class home extends AppCompatActivity {
     }
 
     private void mostrartest(){
-        ArrayList<Institucion> ar =
+       /* ArrayList<Institucion> ar =
                 new ListaInstituciones(getBaseContext()).getLista();
         
         for(Institucion inst:ar){
            Log.d("institucion ", inst.getNombre_institucion());
-        }
+        }*/
+        ArrayList<Institucion> lista = new ListaInstituciones(getBaseContext()).getLista();
+   for(Institucion ar: lista){
+       Log.d("nom ", ar.getNombre_institucion());
+       Log.d("dir ", ar.getDireccion()== null ? "":"BIEN");
+       
+   }
     }
     
     public void crearLista(){
