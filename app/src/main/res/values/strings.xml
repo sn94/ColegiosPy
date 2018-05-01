@@ -14,14 +14,11 @@
         <item>codigo_zona</item>
         <item>nombre_zona</item>
         <item>codigo_establecimiento</item>
+        <item>establecimiento_id</item>
+        <item>uri_establecimiento</item>
+        <item>codigo_institucion</item>
         <item>nombre_institucion</item>
-        <item>sector_o_tipo_gestion</item>
-        <item>codigo_region_administrativa</item>
-        <item>nombre_region_administrativa</item>
-        <item>nombre_supervisor</item>
-        <item>niveles_modalidades</item>
-        <item>nombre_tipo_organizacion</item>
-        <item>participacion_comunitaria</item>
+        <item>uri_institucion</item>
         <item>direccion</item>
         <item>nro_telefono</item>
         <item>tiene_internet</item>
@@ -29,15 +26,19 @@
         <item>correo_electronico</item>
         <item>id</item>
         <item>anho_cod_geo</item>
-        <item>codigo_institucion</item>
-        <item>codigo_tipo_organizacion</item>
-        <item>establecimiento_id</item>
         <item>tiene_computadora</item>
-        <item>uri_establecimiento</item>
-        <item>uri_institucion</item>    
+        <item>sector_o_tipo_gestion</item>
+        <item>codigo_region_administrativa</item>
+        <item>nombre_region_administrativa</item>
+        <item>nombre_supervisor</item>
+        <item>niveles_modalidades</item>
+        <item>codigo_tipo_organizacion</item>
+        <item>nombre_tipo_organizacion</item>
+        <item>participacion_comunitaria</item>
+
     </string-array>
-    
-    
+
+
     <string-array name="departamentos">
         <item>Central</item>
         <item>Concepcion</item>

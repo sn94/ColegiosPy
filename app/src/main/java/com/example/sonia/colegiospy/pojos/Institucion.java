@@ -297,17 +297,17 @@ public class Institucion {
     
     
     public void setPropertyValue(Context cont, Institucion objIns, String prop, String valu){
-        
-      String[] propert=  cont.getResources().getStringArray(R.array.prop_instituciones);
-    for(String ar: propert){ 
-        try {
-            String nombre_metodo= "set"+
-                    prop.toUpperCase().charAt(0)+ prop.toLowerCase().substring(1);
-            
-                getClass().getMethod(  nombre_metodo, 
+
+        String[] propert=  cont.getResources().getStringArray(R.array.prop_instituciones);
+        for(String ar: propert){
+            try {
+                String nombre_metodo= "set"+
+                        prop.toUpperCase().charAt(0)+ prop.toLowerCase().substring(1);
+
+                getClass().getMethod(  nombre_metodo,
                         new Class[]{ String.class})
                         .invoke( this,  new Object[]{  valu  } );
-                
+
             } catch (NoSuchMethodException e) {
                 e.printStackTrace();
             } catch (IllegalAccessException e) {
@@ -315,7 +315,35 @@ public class Institucion {
             } catch (InvocationTargetException e) {
                 e.printStackTrace();
             }
+
+        } }
+
+
+
+    public String getPropertyValue(Context cont, Institucion objIns, String prop){
+
+        try {
+                String nombre_metodo= "get"+
+                        prop.toUpperCase().charAt(0)+ prop.toLowerCase().substring(1);
+
+               String retorno= getClass().getMethod(  nombre_metodo,
+                        new Class[]{ })
+                        .invoke( this,  null ).toString();
+
+               return retorno;
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }finally {
+            return "";
+        }
+
+         }
         
-    } }
+        
+        
     
 }

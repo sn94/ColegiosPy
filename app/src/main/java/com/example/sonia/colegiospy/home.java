@@ -1,6 +1,7 @@
 package com.example.sonia.colegiospy;
 
 import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,6 +13,7 @@ import android.view.View;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Adapter;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.GridView;
 import android.widget.ListView;
@@ -29,8 +31,8 @@ import java.util.ArrayList;
 public class home extends AppCompatActivity {
 
 
-            
-            
+
+    ArrayList<Institucion> lista=  null ; 
     SwipeRefreshLayout MiSwpLayout;
     ListView MyListView;
     Adapter adaptador;
@@ -40,57 +42,75 @@ public class home extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
-        crearLista();
+
+        obtLista();
+        crearListView();
         crear_fab();
- mostrartest();
    
     }
 
-    private void mostrartest(){
-       /* ArrayList<Institucion> ar =
-                new ListaInstituciones(getBaseContext()).getLista();
-        
-        for(Institucion inst:ar){
-           Log.d("institucion ", inst.getNombre_institucion());
-        }*/
-        ArrayList<Institucion> lista = new ListaInstituciones(getBaseContext()).getLista();
-   for(Institucion ar: lista){
-       Log.d("nom ", ar.getNombre_institucion());
-       Log.d("dir ", ar.getDireccion()== null ? "":"BIEN");
-       
-   }
+    private void obtLista(){
+       lista = new ListaInstituciones(getBaseContext()).getLista();
     }
     
-    public void crearLista(){
+    public void crearListView(){
 
-        MiSwpLayout=  (SwipeRefreshLayout) findViewById(R.id.MiSwpRefresh );
+        /*MiSwpLayout=  (SwipeRefreshLayout) findViewById(R.id.MiSwpRefresh );*/
         MyListView= (ListView) findViewById( R.id.MiListView);
-        String[] planetas= getResources().getStringArray( R.array.prop_instituciones );
-        
+        String[] inst_pro= getResources().getStringArray( R.array.prop_instituciones );
+        MyListView.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+               buscarPorDepartamento( position);
+            }
+        });
+             
+ 
         ArrayAdapter arrayAdapter=
-                new ArrayAdapter(this,android.R.layout.simple_list_item_1,planetas);
+                new ArrayAdapter(this,android.R.layout.simple_list_item_1,lista);
         
         MyListView.setAdapter( arrayAdapter );
 
+        /*
         MiSwpLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
             @Override
             public void onRefresh() {
                 refrescar_contenido();
             }
-        });
+        });*/
     }
     
     
-    
+    /*
     public void refrescar_contenido(){
-        String[] planetas= getResources().getStringArray( R.array.prop_instituciones );
+        String[] inst_pro= getResources().getStringArray( R.array.prop_instituciones );
         ArrayAdapter arrayAdapter=
-                new ArrayAdapter(this,android.R.layout.simple_list_item_1,planetas);
+                new ArrayAdapter(this,android.R.layout.simple_list_item_1,inst_pro);
         MyListView.setAdapter( arrayAdapter );
         MiSwpLayout.setRefreshing( false );//deshabilitar la visibilidad del progreso
         
         
+    }*/
+    
+    
+    
+    private void buscarPorDepartamento( int pos){
+        Institucion institucion = lista.get(pos);
+        // Enviar datos a otro activity
+        Intent activiIndi= new Intent(this, 
+        com.example.sonia.colegiospy.institucion.class);
+       
+        //Propiedades de objeto institucion
+        String[] stringArray = getResources().getStringArray(R.array.prop_instituciones);
+
+        for (String ele: stringArray ) {
+           activiIndi.putExtra(ele,
+                   institucion.getPropertyValue(this, institucion, ele) );
+        }
+        startActivity( activiIndi);
+
     }
+    
     public void  crear_fab(){
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
